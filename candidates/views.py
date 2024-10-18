@@ -1,17 +1,33 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import PersonalInfo, WorkExperience, Education
 from rest_framework import viewsets
-from .models import PersonalInfo
-from .serializers import PersonalInfoSerializer
+from .models import PersonalInfo, Contact, WorkExperience, Education
+from .serializers import PersonalInfoSerializer, ContactSerializer, WorkExperienceSerializer, EducationSerializer
 
 def home(request):
     return render(request, 'candidates/home.html')
 
-# ViewSet para a API de PersonalInfo
+
 class PersonalInfoViewSet(viewsets.ModelViewSet):
     queryset = PersonalInfo.objects.all()
     serializer_class = PersonalInfoSerializer
+
+class PersonalInfoViewSet(viewsets.ModelViewSet):
+    queryset = PersonalInfo.objects.all()
+    serializer_class = PersonalInfoSerializer
+
+# verificar
+class ContactViewSet(viewsets.ModelViewSet):
+    queryset = Contact.objects.all()
+    serializer_class = ContactSerializer
+
+class WorkExperienceViewSet(viewsets.ModelViewSet):
+    queryset = WorkExperience.objects.all()
+    serializer_class = WorkExperienceSerializer
+
+class EducationViewSet(viewsets.ModelViewSet):
+    queryset = Education.objects.all()
+    serializer_class = EducationSerializer
 
 def submit_resume(request):
     if request.method == 'POST':
