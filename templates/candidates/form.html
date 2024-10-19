@@ -5,68 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Submeter Currículo</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script>
-        // Função para buscar o endereço usando o ViaCEP
-        function buscaCep() {
-            let cep = document.getElementById('cep').value;
-            let cepErrorDiv = document.getElementById('cep-error-message');
-
-            cepErrorDiv.innerHTML = '';
-
-            if (cep.length !== 8) {
-                cepErrorDiv.innerHTML = '<div class="alert alert-warning mt-2">CEP inválido. Por favor, insira um CEP com 8 dígitos.</div>';
-                return; 
-            }
-
-            // Faz a busca do CEP usando a API ViaCEP
-            fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                .then(response => response.json())
-                .then(data => {
-                    if (!data.erro) {
-                        document.getElementById('street').value = data.logradouro;
-                        document.getElementById('neighborhood').value = data.bairro;
-                        document.getElementById('city').value = data.localidade;
-                        document.getElementById('state').value = data.uf;
-                    } else {
-                        cepErrorDiv.innerHTML = '<div class="alert alert-danger mt-2">CEP não encontrado. Por favor, verifique e tente novamente.</div>';
-                    }
-                })
-                .catch(() => {
-                    cepErrorDiv.innerHTML = '<div class="alert alert-danger mt-2">Erro ao buscar o CEP. Tente novamente mais tarde.</div>';
-                });
-        }
-        // formatar numero de celular
-        function formatarNumeroTelefone(input) {
-        var numero = input.value.replace(/\D/g, '');
-
-        if (numero.length >= 2) {
-            numero = '(' + numero.substring(0, 2) + ')' + numero.substring(2);
-        }
-        if (numero.length > 3) {
-            numero = numero.substring(0, 4) + ' ' + numero.substring(4);
-        }
-        if (numero.length > 10) {
-            numero = numero.substring(0, 10) + '-' + numero.substring(10);
-        }
-
-        input.value = numero;
-    }
-    // Função para validar o número de telefone
-    function validarTelefone() {
-    var telefone = document.getElementById('phone').value;
-    var errorDiv = document.getElementById('error-message');
-
-    errorDiv.innerHTML = '';
-
-    if (telefone.length !== 15) {
-        errorDiv.innerHTML = '<div class="alert alert-danger mt-3">Telefone Inválido. O telefone deve estar no formato (XX) XXXXX-XXXX.</div>';
-        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        return false; 
-    }
-
-    return true;
-}
-    </script>
+    {% load static %}
+    <script src="{% static 'script/script.js' %}"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -95,7 +35,7 @@
 
             <div class="form-group">
                 <label for="phone">Telefone:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" oninput="formatarNumeroTelefone(this)" maxlength="11" required>
+                <input type="tel" class="form-control" id="phone" name="phone" oninput="formatarNumeroTelefone(this)" maxlength="15" required>
             </div>
 
             <!-- Endereço -->
@@ -138,56 +78,17 @@
 
             <!-- Experiência Profissional: Campos separados -->
             <h3>Experiência Profissional</h3>
-
-            <div class="form-group">
-                <label for="position">Cargo:</label>
-                <input type="text" class="form-control" id="position" name="position" required>
-            </div>
-
-            <div class="form-group">
-                <label for="company">Empresa:</label>
-                <input type="text" class="form-control" id="company" name="company" required>
-            </div>
-
-            <div class="form-group">
-                <label for="start_date">Início do Período:</label>
-                <input type="date" class="form-control" id="start_date" name="start_date" required>
-            </div>
-
-            <div class="form-group">
-                <label for="end_date">Fim do Período:</label>
-                <input type="date" class="form-control" id="end_date" name="end_date">
-            </div>
-
-            <div class="form-group">
-                <label for="description">Descrição:</label>
-                <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
-            </div>
+            <div id="experience-container"></div>
+            <button type="button" class="btn btn-primary" onclick="addExperience()">+ Adicionar Experiência</button>
 
             <!-- Formação Acadêmica: Campos separados -->
             <h3>Formação Acadêmica</h3>
+            <div id="education-container"></div>
+            <button type="button" class="btn btn-primary" onclick="addEducation()">+ Adicionar Formação</button>
 
-            <div class="form-group">
-                <label for="institution">Instituição:</label>
-                <input type="text" class="form-control" id="institution" name="institution" required>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary d-block">Submeter Currículo</button>
             </div>
-
-            <div class="form-group">
-                <label for="course">Curso:</label>
-                <input type="text" class="form-control" id="course" name="course" required>
-            </div>
-
-            <div class="form-group">
-                <label for="start_date_education">Início do Período:</label>
-                <input type="date" class="form-control" id="start_date_education" name="start_date_education" required>
-            </div>
-
-            <div class="form-group">
-                <label for="graduation_date">Data de Formação:</label>
-                <input type="date" class="form-control" id="graduation_date" name="graduation_date" required>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submeter Currículo</button>
             
             <div id="error-message"></div>
         </form>
