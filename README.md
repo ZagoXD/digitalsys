@@ -62,6 +62,12 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
    http://127.0.0.1:8000
    ```
 
+2. Para admin:
+   ```
+   nat
+   123
+   ```
+
 2. **Submeter currículo**: O candidato pode submeter suas informações pessoais, experiência profissional e formação acadêmica no formulário acessível em `/candidates/submit/`.
 
 3. **Acessar o painel de administração**: O administrador pode acessar o painel em `/admin`, onde é possível visualizar e gerenciar os currículos submetidos.
