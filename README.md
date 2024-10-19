@@ -11,8 +11,8 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 
 ## Requisitos
 
-- **Python 3.x**
-- **Django 3.x ou 4.x**
+- **Python**
+- **Django**
 - **Django Rest Framework**
 - **Bootstrap 4 ou superior**
 - **ViaCEP API** (para busca automática de endereços via CEP)
@@ -21,11 +21,11 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 
 1. Clone este repositório:
    ```bash
-   git clone https://github.com/usuario/repositorio.git
+   git clone https://github.com/ZagoXD/digitalsys.git
    ```
 2. Navegue até o diretório do projeto:
    ```bash
-   cd pegho_recruitment
+   cd digitalsys
    ```
 
 3. Crie e ative um ambiente virtual:
@@ -72,6 +72,7 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 - **ViaCEP API**: Busca automática de endereço ao digitar o CEP.
 - **Adicionar/Remover Experiências**: O candidato pode adicionar ou remover múltiplas experiências profissionais de forma dinâmica no formulário.
 - **Adicionar/Remover Formações**: O candidato pode adicionar ou remover múltiplas formações acadêmicas no formulário.
+- **Realizar Login e Logout**: O usuário pode optar por realizar login e logout como administrador para ver o painel de `/admin`.
 
 ## Tecnologias Utilizadas
 
@@ -81,32 +82,3 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 - **JavaScript**: Utilizado para funcionalidades dinâmicas no frontend.
 - **ViaCEP API**: Para buscar endereços automaticamente via CEP.
 
-## Estrutura de Pastas
-
-```
-pegho_recruitment/
-│
-├── candidates/               # App principal
-│   ├── migrations/           # Arquivos de migração do banco de dados
-│   ├── static/               # Arquivos estáticos (CSS, JS)
-│   ├── templates/            # Templates HTML
-│   ├── models.py             # Modelos do banco de dados
-│   ├── views.py              # Lógica das views
-│   ├── urls.py               # Rotas do app
-│   └── forms.py              # (Opcional) Arquivo de formulários
-│
-├── pegho_recruitment/        # Configurações do projeto Django
-│   ├── settings.py           # Configurações gerais do projeto
-│   ├── urls.py               # Rotas principais do projeto
-│   └── wsgi.py               # Configurações WSGI para deploy
-│
-├── static/                   # Arquivos estáticos (global)
-│   └── script/               # Arquivos JavaScript
-│       └── script.js
-├── manage.py                 # Comando de gerenciamento do Django
-├── README.md                 # Documentação do projeto
-└── requirements.txt          # Dependências do projeto
-```
-
-## Licença
-Este projeto está sob a licença MIT. Para mais detalhes, consulte o arquivo LICENSE.
