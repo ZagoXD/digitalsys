@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página Principal</title>
     {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <h1>Bem-vindo ao Sistema de Recrutamento da Pegho</h1>
@@ -13,6 +14,7 @@
     <!-- Link para submeter currículo -->
     <a href="{% url 'submit_resume' %}">Clique aqui para submeter seu currículo</a>
 
+    <!-- adm -->
     {% if user.is_authenticated and user.is_superuser %}
         <a href="{% url 'admin:index' %}">Clique aqui para acessar o painel de administrador</a>
     {% else %}

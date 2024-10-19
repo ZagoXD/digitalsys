@@ -9,21 +9,31 @@
         // Função para buscar o endereço usando o ViaCEP
         function buscaCep() {
             let cep = document.getElementById('cep').value;
-            if (cep.length === 8) {
-                fetch(`https://viacep.com.br/ws/${cep}/json/`)
-                    .then(response => response.json())
-                    .then(data => {
-                        if (!data.erro) {
-                            document.getElementById('street').value = data.logradouro;
-                            document.getElementById('neighborhood').value = data.bairro;
-                            document.getElementById('city').value = data.localidade;
-                            document.getElementById('state').value = data.uf;
-                        } else {
-                            alert("CEP não encontrado.");
-                        }
-                    })
-                    .catch(() => alert("Erro ao buscar o CEP."));
+            let cepErrorDiv = document.getElementById('cep-error-message');
+
+            cepErrorDiv.innerHTML = '';
+
+            if (cep.length !== 8) {
+                cepErrorDiv.innerHTML = '<div class="alert alert-warning mt-2">CEP inválido. Por favor, insira um CEP com 8 dígitos.</div>';
+                return; 
             }
+
+            // Faz a busca do CEP usando a API ViaCEP
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.erro) {
+                        document.getElementById('street').value = data.logradouro;
+                        document.getElementById('neighborhood').value = data.bairro;
+                        document.getElementById('city').value = data.localidade;
+                        document.getElementById('state').value = data.uf;
+                    } else {
+                        cepErrorDiv.innerHTML = '<div class="alert alert-danger mt-2">CEP não encontrado. Por favor, verifique e tente novamente.</div>';
+                    }
+                })
+                .catch(() => {
+                    cepErrorDiv.innerHTML = '<div class="alert alert-danger mt-2">Erro ao buscar o CEP. Tente novamente mais tarde.</div>';
+                });
         }
         // formatar numero de celular
         function formatarNumeroTelefone(input) {
@@ -43,15 +53,23 @@
     }
     // Função para validar o número de telefone
     function validarTelefone() {
-        var telefone = document.getElementById('phone').value;
+    var telefone = document.getElementById('phone').value;
+    var errorDiv = document.getElementById('error-message');
 
-        if (telefone.length !== 15) {
-            alert('Telefone Inválido');
-            return false; 
-        }
-        return true;
+    errorDiv.innerHTML = '';
+
+    if (telefone.length !== 15) {
+        errorDiv.innerHTML = '<div class="alert alert-danger mt-3">Telefone Inválido. O telefone deve estar no formato (XX) XXXXX-XXXX.</div>';
+        errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return false; 
     }
+
+    return true;
+}
     </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -77,7 +95,7 @@
 
             <div class="form-group">
                 <label for="phone">Telefone:</label>
-                <input type="tel" class="form-control" id="phone" name="phone" oninput="formatarNumeroTelefone(this)" maxlength="15" required>
+                <input type="tel" class="form-control" id="phone" name="phone" oninput="formatarNumeroTelefone(this)" maxlength="11" required>
             </div>
 
             <!-- Endereço -->
@@ -85,6 +103,7 @@
             <div class="form-group">
                 <label for="cep">CEP:</label>
                 <input type="text" class="form-control" id="cep" name="cep" required maxlength="8" onblur="buscaCep()">
+                <div id="cep-error-message"></div>
             </div>
 
             <div class="form-group">
@@ -169,7 +188,12 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Submeter Currículo</button>
+            
+            <div id="error-message"></div>
         </form>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
