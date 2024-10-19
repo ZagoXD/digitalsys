@@ -3,9 +3,15 @@ from django.http import HttpResponse
 from rest_framework import viewsets
 from .models import PersonalInfo, Contact, WorkExperience, Education
 from .serializers import PersonalInfoSerializer, ContactSerializer, WorkExperienceSerializer, EducationSerializer
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 def home(request):
     return render(request, 'candidates/home.html')
+
+@login_required
+def dashboard(request):
+    return render(request, 'dashboard.html')
 
 
 class PersonalInfoViewSet(viewsets.ModelViewSet):

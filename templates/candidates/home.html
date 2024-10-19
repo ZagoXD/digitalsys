@@ -10,7 +10,21 @@
     <h1>Bem-vindo ao Sistema de Recrutamento da Pegho</h1>
     <p>Este é o início do seu sistema de recrutamento.</p>
 
-
+    <!-- Link para submeter currículo -->
     <a href="{% url 'submit_resume' %}">Clique aqui para submeter seu currículo</a>
+
+    {% if user.is_authenticated and user.is_superuser %}
+        <a href="{% url 'admin:index' %}">Clique aqui para acessar o painel de administrador</a>
+    {% else %}
+        <p>Você precisa estar logado como administrador para acessar o painel de administração.</p>
+        <p><a href="/admin/login/">Clique aqui para logar</a></p> 
+    {% endif %}
+
+    {% if user.is_authenticated %}
+    <form method="POST" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>
+{% endif %}
 </body>
 </html>
