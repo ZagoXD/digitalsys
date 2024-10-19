@@ -2,7 +2,7 @@
 # Sistema de Recrutamento da Pegho
 
 ## Autor
-Gustavo
+Gustavo Zago
 
 ## Descrição
 Este é um sistema de recrutamento desenvolvido para a empresa **Pegho**. Ele permite que candidatos submetam seus currículos, incluindo dados pessoais, experiência profissional e formação acadêmica. O sistema também possui um painel administrativo onde é possível gerenciar as informações submetidas pelos candidatos.
