@@ -2,7 +2,7 @@
 # Sistema de Recrutamento da Pegho
 
 ## Autor
-Gustavo
+Gustavo Zago
 
 ## Descrição
 Este é um sistema de recrutamento desenvolvido para a empresa **Pegho**. Ele permite que candidatos submetam seus currículos, incluindo dados pessoais, experiência profissional e formação acadêmica. O sistema também possui um painel administrativo onde é possível gerenciar as informações submetidas pelos candidatos.
@@ -60,6 +60,12 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 1. Abra um navegador e acesse o endereço:
    ```
    http://127.0.0.1:8000
+   ```
+
+2. Para admin:
+   ```
+   nat
+   123
    ```
 
 2. **Submeter currículo**: O candidato pode submeter suas informações pessoais, experiência profissional e formação acadêmica no formulário acessível em `/candidates/submit/`.
