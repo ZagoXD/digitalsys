@@ -37,7 +37,7 @@ class EducationViewSet(viewsets.ModelViewSet):
 
 def submit_resume(request):
     if request.method == 'POST':
-        print(request.POST)
+        # print(request.POST)
         # Captura os dados pessoais
         name = request.POST['name']
         birth_date = request.POST['birth_date']

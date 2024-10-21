@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'candidates',
     'rest_framework',
+    'django_behave',
 ]
 
 LOGIN_REDIRECT_URL = '/'
