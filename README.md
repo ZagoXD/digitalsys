@@ -15,6 +15,7 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 - **Django**
 - **Django Rest Framework**
 - **Bootstrap 4 ou superior**
+- **Behave**
 - **ViaCEP API** (para busca automática de endereços via CEP)
 
 ## Instalação
@@ -87,4 +88,5 @@ O projeto utiliza **Django** como framework backend e inclui uma interface web p
 - **Bootstrap**: Framework CSS para estilização básica.
 - **JavaScript**: Utilizado para funcionalidades dinâmicas no frontend.
 - **ViaCEP API**: Para buscar endereços automaticamente via CEP.
+- **Behave**: Para BDD.
 
